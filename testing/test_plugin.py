@@ -1,5 +1,3 @@
-def test_visualizer_option(testdir):
-    from visualizer import plugin
-    testdir.plugins.append(plugin)
-    config = testdir.parseconfigure("--visualizer")
-    assert config.option.visualizer == True
+def test_vport_cmd_option(testdir):
+    config = testdir.parseconfig("--vport=9090")
+    assert config.option.vport == "9090"

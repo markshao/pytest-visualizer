@@ -136,3 +136,7 @@ dmypy.json
 
 #pipenv
 Pipfile
+
+#scm
+src/visual/_version.py
+

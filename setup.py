@@ -1,13 +1,16 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
+install_requires = [""]
 setup(
     name="pytest-visualizer",
-    use_scm_version={"write_to": "visualizer/_version.py"},
-    long_description=open('README.txt').read(),
-    packages=["visualizer"],
+    use_scm_version={"write_to": "src/visual/_version.py"},
+    long_description=open('README.md').read(),
     license="MIT",
+    setup_requires=["setuptools_scm"],
+    packages=find_packages(where="src"),
+    package_dir={"": "src"},
     # the following makes a plugin available to pytest
-    entry_points={"pytest11": ["visualizer = visualizer.plugin"]},
+    entry_points={"pytest11": ["visual = visual.plugin"]},
     # custom PyPI classifier for pytest plugins
     classifiers=["Framework :: Pytest",
                  'Development Status :: 5 - Production/Stable',
