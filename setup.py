@@ -1,6 +1,7 @@
 from setuptools import setup, find_packages
 
-install_requires = [""]
+install_requires = ["python-socketio==4.4.0", "Flask==1.1.1"]
+
 setup(
     name="pytest-visualizer",
     use_scm_version={"write_to": "src/visual/_version.py"},

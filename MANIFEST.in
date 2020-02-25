@@ -1,0 +1,2 @@
+recursive-include   vapp/templates  *.html
+recursive-include   vapp/js *.js
