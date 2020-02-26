@@ -1,4 +1,4 @@
-import pytest
+from visual.vsession import VSession, PLUGIN_NAME
 
 
 def pytest_addoption(parser):
@@ -12,11 +12,15 @@ def pytest_addoption(parser):
     )
 
 
-@pytest.hookimpl(tryfirst=True)
-def pytest_sessionstart(session):
-    pass
+def pytest_configure(config):
+    # register the vsession here
+    pm = config.pluginmanager
+    plugin = pm.getplugin(PLUGIN_NAME)
+    if plugin is None:
+        plugin = VSession()
+        pm.register(plugin, PLUGIN_NAME)
 
 
-@pytest.hookimpl(tryfirst=True)
-def pytest_sessionfinish(session):
+def pytest_unconfigure(config):
+    # clean the environment
     pass

@@ -11,6 +11,7 @@ app = Flask(__name__,
             static_folder=STATIC_FOLDER,
             template_folder=TEMPLATE_FOLDER)
 app.config["SECRET_KEY"] = "secret"
+
 socketio = SocketIO(app)
 
 
