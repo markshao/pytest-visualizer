@@ -9,6 +9,7 @@ pytest = "*"
 [packages]
 flask = "*"
 flask-socketio = "*"
+eventlet = "*"
 
 [requires]
 python_version = "3.6"
