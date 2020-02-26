@@ -2,7 +2,7 @@ from typing import NoReturn
 from typing import Dict
 from collections import deque
 from time import sleep
-from visual.vapp import socketio
+from flask_socketio import emit
 
 
 class Message(object):
@@ -10,9 +10,11 @@ class Message(object):
         pass
 
 
+NAMESPACE = "/test"
+
+
 class DataHub(object):
     def __init__(self):
-        self.work_thread = None
         self.__is_working = False
         self.__channels = dict()  # type: Dict[str, deque]
 
@@ -24,25 +26,17 @@ class DataHub(object):
         pass
 
     def serve(self) -> NoReturn:
-        pass
+        # scan all the channels here like io-select
+        # later maybe use some mq middleware
 
-    def __serve(self) -> NoReturn:
-        # scan all the channels here like io-select ,later maybe use some mq middleware
-        while True:
-            try:
-                for name, channel in self.__channels.items():
-                    while True:
-                        message = channel.popleft()
-                        if message is None:
-                            break
+        self.__is_working = True
 
-            finally:
-                sleep(1)
+        from visual.vapp import app
 
-
-class MessageSender(object):
-    pass
-
-
-class MessageReceiver(object):
-    pass
+        with app.test_request_context('/'):
+            while True:
+                try:
+                    emit("my_response", {"data": "hello world"}, namespace="/test", broadcast=True)
+                finally:
+                    print("sleep")
+                    sleep(2)
