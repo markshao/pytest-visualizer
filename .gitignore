@@ -134,9 +134,6 @@ dmypy.json
 #.vscode/
 .vscode/
 
-#pipenv
-Pipfile
-
 #scm
 src/visual/_version.py
 
